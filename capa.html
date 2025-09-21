@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capa - Comidas Brasileiras</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #964B00;
+      color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mapa {
+      width: 200px;
+      height: 150px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .mapa .norte {
+      background-color: #2e8b57;
+      position: absolute;
+      top: 0;
+      left: 40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .mapa .nordeste {
+      background-color: #ffd700;
+      position: absolute;
+      top: 20px;
+      left: 100px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50% 0 50% 0;
+    }
+
+    .mapa .centro {
+      background-color: #ff8c00;
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 60px;
+      height: 60px;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .mapa .sul {
+      background-color: #8b0000;
+      position: absolute;
+      top: 100px;
+      left: 70px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .grid-comidas {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .prato {
+      background-color: #fff8f0;
+      color: #333;
+      border-radius: 12px;
+      width: 200px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .prato h2 {
+      margin: 10px 0 5px;
+      font-size: 1.1rem;
+      color: #6d4c41;
+    }
+
+    .prato p {
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      font-size: 0.9rem;
+      background-color: #4b2a14;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Comidas Brasileiras</h1>
+    <div class="mapa">
+      <div class="norte"></div>
+      <div class="nordeste"></div>
+      <div class="centro"></div>
+      <div class="sul"></div>
+    </div>
+
+    <div class="grid-comidas">
+      <div class="prato">
+        <h2>Arroz com Pequi</h2>
+        <p>Receita típica do Centro-Oeste feita com pequi e arroz.</p>
+      </div>
+      <div class="prato">
+        <h2>Frango com Quiabo</h2>
+        <p>Prato mineiro com sabor forte e tradição.</p>
+      </div>
+      <div class="prato">
+        <h2>Pacu na Folha</h2>
+        <p>Peixe assado na folha de bananeira com temperos regionais.</p>
+      </div>
+      <div class="prato">
+        <h2>Farofa de Banana</h2>
+        <p>Clássico do Mato Grosso com banana da terra e carne seca.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Comidas Brasileiras — E-book Gastronômico
+  </footer>
+
+</body>
+</html>

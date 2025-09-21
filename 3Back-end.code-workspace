@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../Documents/treino/3Back-end"
+		},
+		{
+			"path": "../ceppat python"
+		},
+		{
+			"path": "../../../../xampp/htdocs/backend"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "3Back-end"
+	}
+}
