@@ -4,100 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sabores do Brasil | Flavors of Brazil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#fdf6f0; --ink:#333; --brand:#ff7043; --brand-d:#e55b2f; --accent:#6d4c41;
-    }
-    body{margin:0;font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--ink)}
-    .lang-select{text-align:right;padding:1rem}
-    .lang-select button{background:var(--accent);color:#fff;border:0;padding:.5rem 1rem;margin-left:.5rem;cursor:pointer;border-radius:8px}
-    .intro,.recipe-preview,.trust,.faq{padding:2rem;text-align:center}
-    .intro p,.trust p,.faq p{max-width:700px;margin:auto;font-size:1.1rem}
-    .btn{background:var(--brand);color:#fff;padding:.9rem 1.4rem;border:0;border-radius:10px;font-size:1.05rem;cursor:pointer;text-decoration:none;display:inline-block;font-weight:700;transition:background .2s,transform .2s}
-    .btn:hover{background:var(--brand-d);transform:scale(1.03)}
-    footer{background:#d8bfa5;text-align:center;padding:1rem;font-size:.9rem}
 
-    /* ===== HERO EXPERIENCE ===== */
-    .hero-unique{position:relative;padding:3.5rem 1.5rem 2.25rem;text-align:center;overflow:hidden;isolation:isolate}
-    .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
-      background:radial-gradient(1200px 600px at 10% 0%, #ff9d76, transparent 60%),
-                 radial-gradient(1200px 600px at 90% 100%, #f7d1b8, transparent 60%),
-                 linear-gradient(135deg, #ff9d76, #fdf6f0);
-      transition:background .28s ease; filter:saturate(1.05);
-    }
-    .hero-box{position:relative;z-index:1;background:rgba(255,255,255,.92);display:inline-block;padding:1.6rem 2rem;border-radius:16px;
-      box-shadow:0 12px 40px rgba(0,0,0,.16);max-width:920px;width:100%}
-    .hero-title{font-family:'Playfair Display',serif;font-size:2.4rem;margin:0 0 .25rem;color:#2f2a26}
-    .hero-sub{margin:0 0 1rem;color:#444}
-    .hero-controls{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin:.25rem 0 1rem}
-    .chip{border:0;padding:.55rem .8rem;border-radius:999px;cursor:pointer;background:#ead8cc;color:#5a3d34;font-weight:700}
-    .chip[aria-pressed="true"]{background:var(--brand);color:#fff}
-    .level{display:flex;gap:.5rem;justify-content:center;align-items:center;margin:.25rem 0 1rem}
-    .level input{display:none}
-    .level label{background:#efe2d9;padding:.45rem .75rem;border-radius:999px;cursor:pointer;font-weight:700;color:#604338}
-    .level input:checked + label{background:var(--accent);color:#fff}
-    .progress{position:relative;height:8px;background:#f0e4db;border-radius:999px;overflow:hidden;margin:.25rem auto 1rem;max-width:640px}
-    .progress > span{display:block;height:100%;width:0%;background:var(--brand);transition:width .3s ease}
-    .hero-cta{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-    .btn-ghost{background:#fff;color:var(--accent);border:2px solid var(--accent);padding:.8rem 1.2rem;border-radius:10px;font-weight:800;cursor:pointer}
-    .btn-ghost:hover{filter:brightness(.98)}
-    .small-muted{color:#6f625c;font-size:.9rem}
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="E-book de receitas regionais do Brasil com download imediato em PDF. Ingredientes simples, passo a passo claro e prévias do conteúdo.">
 
-    /* Paletas por região */
-    .hero-unique[data-region="norte"] .hero-bg{
-      background:radial-gradient(1200px 500px at 10% 0%, #ffd166, transparent 60%),
-                 radial-gradient(1200px 500px at 90% 100%, #06d6a0, transparent 60%),
-                 linear-gradient(135deg, #ffd166, #fdf6f0);
-    }
-    .hero-unique[data-region="nordeste"] .hero-bg{
-      background:radial-gradient(1200px 500px at 10% 0%, #ff8fab, transparent 60%),
-                 radial-gradient(1200px 500px at 90% 100%, #ffd6a5, transparent 60%),
-                 linear-gradient(135deg, #ff8fab, #fff0e6);
-    }
-    .hero-unique[data-region="centro"] .hero-bg{
-      background:radial-gradient(1200px 500px at 10% 0%, #f6bd60, transparent 60%),
-                 radial-gradient(1200px 500px at 90% 100%, #84a59d, transparent 60%),
-                 linear-gradient(135deg, #f6bd60, #fff2e1);
-    }
-    .hero-unique[data-region="sudeste"] .hero-bg{
-      background:radial-gradient(1200px 500px at 10% 0%, #b388eb, transparent 60%),
-                 radial-gradient(1200px 500px at 90% 100%, #ffd166, transparent 60%),
-                 linear-gradient(135deg, #b388eb, #f8e7ff);
-    }
-    .hero-unique[data-region="sul"] .hero-bg{
-      background:radial-gradient(1200px 500px at 10% 0%, #90caf9, transparent 60%),
-                 radial-gradient(1200px 500px at 90% 100%, #a5d6a7, transparent 60%),
-                 linear-gradient(135deg, #90caf9, #edf7ff);
-    }
-
-    /* ===== CARDS DE RECEITAS ===== */
-    .recipe-preview{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem}
-    .card{background:#fff;border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.14);width:300px;padding:1rem;text-align:center;transition:.2s transform;cursor:pointer}
-    .card:hover{transform:translateY(-4px)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:.8rem}
-    .card h2{font-size:1.2rem;color:#6d4c41}
-
-    /* ===== MODAIS ===== */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
-    .modal.open{display:flex}
-    .modal .box{width:min(760px,95vw);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
-    .modal .img-wrap img{width:100%;height:100%;object-fit:cover}
-    .modal .content{padding:18px;text-align:left}
-    .modal h3{margin:0 0 8px;font-size:20px;color:#6d4c41}
-    .modal ul,.modal ol{margin:8px 0 12px;padding-left:18px}
-    .modal .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .modal .close{background:#eee;border:0;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:700}
-    @media (max-width:820px){.modal .box{grid-template-columns:1fr}}
-
-    /* ===== PIX MODAL ===== */
-    .pix-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:1200;padding:16px}
-    .pix-modal.open{display:grid}
-    .pix-box{background:#fff;border-radius:14px;padding:18px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-    .pix-code{user-select:all;padding:.6rem .8rem;background:#f7f2ee;border-radius:8px;margin:.6rem 0;font-size:.95rem;word-break:break-all}
-    .small-muted{color:#6f625c;font-size:.9rem}
-    /* ===== FIM CSS ===== */
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="lang-select">
@@ -107,53 +19,110 @@
 
   <!-- ================= PT ================= -->
   <div id="pt">
-    <!-- HERO INTERATIVO -->
-    <header id="hero-pt" class="hero-unique" data-region="centro">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-box">
-        <h1 class="hero-title">Sabores do Brasil</h1>
-        <p class="hero-sub">Receitas típicas regionais em um e-book completo</p>
+    <!-- HERO IMERSIVO (sem regiões/níveis) -->
+    <header class="vision-hero" data-palette="warm">
+      <div class="vision-bg" aria-hidden="true"></div>
 
-        <div class="hero-controls" aria-label="Escolha uma região">
-          <button class="chip" data-region="norte">🌿 Norte</button>
-          <button class="chip" data-region="nordeste">🌞 Nordeste</button>
-          <button class="chip" data-region="centro" aria-pressed="true">🌾 Centro-Oeste</button>
-          <button class="chip" data-region="sudeste">🏙️ Sudeste</button>
-          <button class="chip" data-region="sul">⛰️ Sul</button>
+      <!-- camadas decorativas (parallax) -->
+      <div class="vision-layer orbits" aria-hidden="true">
+        <span class="orbit o1" data-speed="-0.06"></span>
+        <span class="orbit o2" data-speed="0.05"></span>
+        <span class="orbit o3" data-speed="0.09"></span>
+      </div>
+
+      <div class="vision-layer shapes" aria-hidden="true">
+        <!-- folhas -->
+        <svg class="shape leaf l1" data-speed="0.07" viewBox="0 0 64 64"><path d="M10 38c18 12 34 9 44-8-17-9-33-7-44 8z" fill="#3aa76d"/></svg>
+        <svg class="shape leaf l2" data-speed="-0.05" viewBox="0 0 64 64"><path d="M8 28c14 16 32 18 48 2C42 18 24 16 8 28z" fill="#78c091"/></svg>
+        <!-- pimenta -->
+        <svg class="shape pepper p1" data-speed="0.1" viewBox="0 0 64 64"><path d="M11 39c10 7 25 5 34-5 7-7 3-16-5-11-3 2-7 3-11 6-7 5-12 8-18 10z" fill="#e7592f"/><path d="M30 22c3-4 8-8 11-7 2 1 2 3 1 5-4-1-7 0-12 2z" fill="#2e7d32"/></svg>
+        <!-- gota -->
+        <svg class="shape drop d1" data-speed="-0.08" viewBox="0 0 64 64"><path d="M32 8c9 12 16 18 16 27a16 16 0 1 1-32 0c0-9 7-15 16-27z" fill="#ffd166"/></svg>
+      </div>
+
+      <div class="vision-grid">
+        <div class="hero-left">
+          <span class="eyebrow">Livro Digital</span>
+          <h1 class="hero-title">Cozinhe o Brasil em casa</h1>
+          <p class="hero-sub">50+ receitas regionais com ingredientes simples e passo a passo claro.</p>
+
+
+          
+
+          <div class="hero-cta">
+            <a class="btn" href="LINK-DE-PAGAMENTO">Comprar agora</a>
+            <button id="pt-pix" class="btn-ghost">Pagar com PIX</button>
+            
+          </div>
+
+          <a class="hero-scroll" href="#receitas">Ver prévias ↓</a>
         </div>
 
-        <div class="level" role="radiogroup" aria-label="Seu nível na cozinha">
-          <input type="radio" id="pt-n1" name="pt-nivel" value="iniciante" checked><label for="pt-n1">Iniciante</label>
-          <input type="radio" id="pt-n2" name="pt-nivel" value="intermediário"><label for="pt-n2">Intermediário</label>
-          <input type="radio" id="pt-n3" name="pt-nivel" value="avançado"><label for="pt-n3">Avançado</label>
+        <div class="hero-right">
+          <figure class="mockup">
+            <img src="cover.png" alt="Capa do e-book Sabores do Brasil">
+            <span class="shine" aria-hidden="true"></span>
+          </figure>
         </div>
-
-        <div class="progress" aria-label="Progresso de personalização"><span id="pt-pbar" style="width:50%"></span></div>
-
-        <div class="hero-cta">
-          <a id="pt-cta" class="btn" href="LINK-DE-PAGAMENTO">Quero cozinhar o Centro-Oeste hoje</a>
-          <button id="pt-pix" class="btn-ghost">Pagar com PIX</button>
-        </div>
-        <div class="small-muted" style="margin-top:.6rem">Download imediato • PDF • Funciona em celular e computador</div>
       </div>
     </header>
 
     <div class="intro">
       <p>Uma verdadeira viagem gastronômica! Descubra receitas autênticas do Norte ao Sul do Brasil, preparadas com ingredientes simples e acessíveis.</p>
     </div>
+    <!-- ROTEIRO DOS SABORES (PT) -->
+<section id="roteiro" class="trail">
+  <div class="trail-head">
+    <h2>Roteiro dos Sabores</h2>
+    <p>De onde vêm as receitas e o que visitar por perto: mercados, feiras e paisagens que inspiram o e-book.</p>
+  </div>
+
+  <div class="trail-grid">
+    <figure class="place" data-modal="p1">
+      <img src="imagens/belem_vero_peso.png" alt="Belém - Mercado Ver-o-Peso" loading="lazy">
+      <figcaption><h3>Belém, Pará</h3><p>Pato no tucupi • Mercado Ver-o-Peso</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p2">
+      <img src="imagens/goiania_centro.jpg" alt="Goiânia - Centro" loading="lazy">
+      <figcaption><h3>Goiânia, Goiás</h3><p>Arroz com pequi • Sabores do Cerrado</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p3">
+      <img src="imagens/bh_mercado_central.jpg" alt="Belo Horizonte - Mercado Central" loading="lazy">
+      <figcaption><h3>Belo Horizonte, MG</h3><p>Frango com quiabo • Mercado Central</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p4">
+      <img src="imagens/salvador_pelourinho.png" alt="Salvador - Pelourinho" loading="lazy">
+      <figcaption><h3>Salvador, BA</h3><p>Acarajé • Centro histórico</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p5">
+      <img src="imagens/manaus_teatro.png" alt="Manaus - Teatro Amazonas" loading="lazy">
+      <figcaption><h3>Manaus, AM</h3><p>Peixes amazônicos • Teatro Amazonas</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p6">
+      <img src="imagens/gramado_rio_grande.png" alt="Gramado - Serra Gaúcha" loading="lazy">
+      <figcaption><h3>Serra Gaúcha, RS</h3><p>Churrasco e coloniais • Vale dos Vinhedos</p></figcaption>
+    </figure>
+  </div>
+</section>
+
 
     <!-- CARDS CLICÁVEIS -->
-    <div class="recipe-preview">
+    <div id="receitas" class="recipe-preview">
       <div class="card open-modal" data-modal="m1">
-        <img src="pequi.jpg" alt="Arroz com Pequi"><h2>Arroz com Pequi</h2>
+        <img src="pequi.jpg" alt="Arroz com Pequi" loading="lazy"><h2>Arroz com Pequi</h2>
         <p>Receita típica do Centro-Oeste, feita com pequi e temperos caseiros.</p>
       </div>
       <div class="card open-modal" data-modal="m2">
-        <img src="frango-com-quiabo.webp" alt="Frango com Quiabo"><h2>Frango com Quiabo</h2>
+        <img src="frango-com-quiabo.webp" alt="Frango com Quiabo" loading="lazy"><h2>Frango com Quiabo</h2>
         <p>Tradição mineira de sabor marcante, cozida com temperos frescos.</p>
       </div>
       <div class="card open-modal" data-modal="m3">
-        <img src="pato-no-tucupi.jpg" alt="Pato no Tucupi"><h2>Pato no Tucupi</h2>
+        <img src="pato-no-tucupi.jpg" alt="Pato no Tucupi" loading="lazy"><h2>Pato no Tucupi</h2>
         <p>Prato emblemático da região Norte com jambu e tucupi.</p>
       </div>
     </div>
@@ -175,44 +144,91 @@
 
   <!-- ================= EN ================= -->
   <div id="en" style="display:none;">
-    <header id="hero-en" class="hero-unique" data-region="centro">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-box">
-        <h1 class="hero-title">Flavors of Brazil</h1>
-        <p class="hero-sub">Traditional regional recipes in a complete e-book</p>
+    <header class="vision-hero" data-palette="warm">
+      <div class="vision-bg" aria-hidden="true"></div>
+      <div class="vision-layer orbits" aria-hidden="true">
+        <span class="orbit o1" data-speed="-0.06"></span>
+        <span class="orbit o2" data-speed="0.05"></span>
+        <span class="orbit o3" data-speed="0.09"></span>
+      </div>
+      <div class="vision-layer shapes" aria-hidden="true">
+        <svg class="shape leaf l1" data-speed="0.07" viewBox="0 0 64 64"><path d="M10 38c18 12 34 9 44-8-17-9-33-7-44 8z" fill="#3aa76d"/></svg>
+        <svg class="shape leaf l2" data-speed="-0.05" viewBox="0 0 64 64"><path d="M8 28c14 16 32 18 48 2C42 18 24 16 8 28z" fill="#78c091"/></svg>
+        <svg class="shape pepper p1" data-speed="0.1" viewBox="0 0 64 64"><path d="M11 39c10 7 25 5 34-5 7-7 3-16-5-11-3 2-7 3-11 6-7 5-12 8-18 10z" fill="#e7592f"/><path d="M30 22c3-4 8-8 11-7 2 1 2 3 1 5-4-1-7 0-12 2z" fill="#2e7d32"/></svg>
+        <svg class="shape drop d1" data-speed="-0.08" viewBox="0 0 64 64"><path d="M32 8c9 12 16 18 16 27a16 16 0 1 1-32 0c0-9 7-15 16-27z" fill="#ffd166"/></svg>
+      </div>
 
-        <div class="hero-controls" aria-label="Choose a region">
-          <button class="chip" data-region="norte">🌿 North</button>
-          <button class="chip" data-region="nordeste">🌞 Northeast</button>
-          <button class="chip" data-region="centro" aria-pressed="true">🌾 Center-West</button>
-          <button class="chip" data-region="sudeste">🏙️ Southeast</button>
-          <button class="chip" data-region="sul">⛰️ South</button>
+      <div class="vision-grid">
+        <div class="hero-left">
+          <span class="eyebrow">Digital e-book</span>
+          <h1 class="hero-title">Cook Brazil at home</h1>
+          <p class="hero-sub">50+ regional recipes with simple ingredients and clear step-by-step.</p>
+          
+          <div class="hero-cta">
+            <a class="btn" href="LINK-DE-PAGAMENTO">Buy now</a>
+            <button id="en-pix" class="btn-ghost">Pay with PIX</button>
+          </div>
+
+          <a class="hero-scroll" href="#receitas">See previews ↓</a>
         </div>
 
-        <div class="level" role="radiogroup" aria-label="Your cooking level">
-          <input type="radio" id="en-n1" name="en-nivel" value="beginner" checked><label for="en-n1">Beginner</label>
-          <input type="radio" id="en-n2" name="en-nivel" value="intermediate"><label for="en-n2">Intermediate</label>
-          <input type="radio" id="en-n3" name="en-nivel" value="advanced"><label for="en-n3">Advanced</label>
+        <div class="hero-right">
+          <figure class="mockup">
+            <img src="cover2.png" alt="E-book cover Flavors of Brazil">
+            <span class="shine" aria-hidden="true"></span>
+          </figure>
         </div>
-
-        <div class="progress" aria-label="Personalization progress"><span id="en-pbar" style="width:50%"></span></div>
-
-        <div class="hero-cta">
-          <a id="en-cta" class="btn" href="LINK-DE-PAGAMENTO">I want to cook the Center-West today</a>
-          <button id="en-pix" class="btn-ghost">Pay with PIX</button>
-        </div>
-        <div class="small-muted" style="margin-top:.6rem">Instant download • PDF • Works on phone and desktop</div>
       </div>
     </header>
 
     <div class="intro">
       <p>A true gastronomic journey! Discover authentic recipes from North to South of Brazil, prepared with simple and accessible ingredients.</p>
+    <!-- TRAIL OF FLAVORS (EN) -->
+<section id="trail-en" class="trail">
+  <div class="trail-head">
+    <h2>Trail of Flavors</h2>
+    <p>Where the recipes come from — markets, landmarks and landscapes that inspired the e-book.</p>
+  </div>
+
+  <div class="trail-grid">
+    <figure class="place" data-modal="p1-en">
+      <img src="imagens/belem/belem_01.jpg" alt="Belém - Ver-o-Peso Market" loading="lazy">
+      <figcaption><h3>Belém, Pará</h3><p>Duck in tucupi • Ver-o-Peso Market</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p2-en">
+      <img src="imagens/goias/goias_01.webp" alt="Goiânia - Cerrado" loading="lazy">
+      <figcaption><h3>Goiânia, Goiás</h3><p>Pequi rice • Cerrado flavors</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p3-en">
+      <img src="imagens/bh/bh_01.webp" alt="Belo Horizonte - Mercado Central" loading="lazy">
+      <figcaption><h3>Belo Horizonte, MG</h3><p>Chicken with okra • Mercado Central</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p4-en">
+      <img src="imagens/salvador/salvador_01.webp" alt="Salvador - Pelourinho" loading="lazy">
+      <figcaption><h3>Salvador, BA</h3><p>Acarajé • Historic center</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p5-en">
+      <img src="imagens/manaus/manaus_01.webp" alt="Manaus - Teatro Amazonas" loading="lazy">
+      <figcaption><h3>Manaus, AM</h3><p>Amazon fish • Teatro Amazonas</p></figcaption>
+    </figure>
+
+    <figure class="place" data-modal="p6-en">
+      <img src="imagens/serra-gaucha/serragaucha_01.webp" alt="Serra Gaúcha - Vineyards" loading="lazy">
+      <figcaption><h3>Serra Gaúcha, RS</h3><p>Barbecue & coloniale • Vineyards</p></figcaption>
+    </figure>
+  </div>
+</section>
+
     </div>
 
     <div class="recipe-preview">
-      <div class="card open-modal" data-modal="m1"><img src="pequi.jpg" alt="Rice with Pequi"><h2>Rice with Pequi</h2><p>Center-West classic with unique pequi flavor.</p></div>
-      <div class="card open-modal" data-modal="m2"><img src="frango-com-quiabo.webp" alt="Chicken with Okra"><h2>Chicken with Okra</h2><p>Minas classic, stewed with fresh spices.</p></div>
-      <div class="card open-modal" data-modal="m3"><img src="pato-no-tucupi.jpg" alt="Duck in Tucupi"><h2>Duck in Tucupi</h2><p>Amazon icon with tucupi and jambu.</p></div>
+      <div class="card open-modal" data-modal="m1"><img src="pequi.jpg" alt="Rice with Pequi" loading="lazy"><h2>Rice with Pequi</h2><p>Center-West classic with unique pequi flavor.</p></div>
+      <div class="card open-modal" data-modal="m2"><img src="frango-com-quiabo.webp" alt="Chicken with Okra" loading="lazy"><h2>Chicken with Okra</h2><p>Minas classic, stewed with fresh spices.</p></div>
+      <div class="card open-modal" data-modal="m3"><img src="pato-no-tucupi.jpg" alt="Duck in Tucupi" loading="lazy"><h2>Duck in Tucupi</h2><p>Amazon icon with tucupi and jambu.</p></div>
     </div>
 
     <div class="trust">
@@ -230,7 +246,7 @@
     <footer>&copy; 2025 Brazilian Regional Recipes. All rights reserved.</footer>
   </div>
 
-  <!-- ===== MODAIS DE RECEITA (COMPARTILHADOS) ===== -->
+  <!-- ===== MODAIS DE RECEITA ===== -->
   <div id="m1" class="modal" aria-hidden="true">
     <div class="box" role="dialog" aria-label="Arroz com Pequi">
       <div class="img-wrap"><img src="pequi.jpg" alt="Arroz com Pequi"></div>
@@ -267,101 +283,431 @@
     </div>
   </div>
 
-  <!-- ===== JS ===== -->
-  <script>
-    // Troca de idioma
-    function switchLanguage(lang){
-      document.getElementById('pt').style.display = (lang==='pt')?'block':'none';
-      document.getElementById('en').style.display = (lang==='en')?'block':'none';
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
+  <script src="app.js" defer></script>
+<!-- Modais de lugares -->
+<!-- MODAL FULLSCREEN – Belém -->
+<div id="p1" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Belém - Ver-o-Peso">
 
-    // Liga hero interativo (funciona para PT e EN separadamente)
-    function bindHero(scopeId, map){
-      const hero = document.getElementById(scopeId);
-      if(!hero) return;
-      const chips = hero.querySelectorAll('.chip');
-      const levels = hero.querySelectorAll('input[name$="nivel"]');
-      const pbar = hero.querySelector('.progress span');
-      const cta = hero.querySelector('.btn');
-      function update(){
-        const r = hero.dataset.region;
-        const pct = (r?50:0) + (hero.querySelector('input[name$="nivel"]:checked')?50:0);
-        pbar.style.width = pct + '%';
-        const label = (map[r] || map.default);
-        cta.textContent = map.cta.replace('%REGIAO%', label);
-      }
-      chips.forEach(ch=>{
-        ch.addEventListener('click',()=>{
-          chips.forEach(c=>c.setAttribute('aria-pressed','false'));
-          ch.setAttribute('aria-pressed','true');
-          hero.dataset.region = ch.dataset.region;
-          update();
-        });
-      });
-      levels.forEach(r=>r.addEventListener('change',update));
-      update();
-    }
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Belém, Ver-o-Peso">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
 
-    bindHero('hero-pt', {
-      norte:'o Norte', nordeste:'o Nordeste', centro:'o Centro-Oeste', sudeste:'o Sudeste', sul:'o Sul',
-      default:'o Brasil', cta:'Quero cozinhar %REGIAO% hoje'
-    });
-    bindHero('hero-en', {
-      norte:'the North', nordeste:'the Northeast', centro:'the Center-West', sudeste:'the Southeast', sul:'the South',
-      default:'Brazil', cta:'I want to cook %REGIAO% today'
-    });
+      <div class="gallery-main">
+        <img
+          src="imagens/belem/belem_01.jpg"
+          width="1400" height="933"
+          alt="Mercado Ver-o-Peso em Belém, Pará ao amanhecer">
+      </div>
 
-    // Abrir/fechar modais de receita
-    document.querySelectorAll('.open-modal').forEach(el=>{
-      el.addEventListener('click', ()=> {
-        const m = document.getElementById(el.getAttribute('data-modal'));
-        if(m){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
-      });
-    });
-    document.querySelectorAll('.modal').forEach(m=>{
-      m.addEventListener('click', (e)=>{
-        if(e.target.classList.contains('modal') || e.target.classList.contains('close')){
-          m.classList.remove('open'); m.setAttribute('aria-hidden','true');
-        }
-      });
-    });
-    document.addEventListener('keydown', (e)=>{
-      if(e.key==='Escape'){
-        document.querySelectorAll('.modal.open').forEach(m=>{ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); });
-      }
-    });
+      <button class="gnext" aria-label="Próxima foto">›</button>
 
-    // PIX modal (PT e EN botões)
-    function attachPix(buttonId){
-      const btn = document.getElementById(buttonId);
-      if(!btn) return;
-      const modal = document.createElement('div');
-      modal.className='pix-modal';
-      modal.innerHTML=`
-        <div class="pix-box" role="dialog" aria-label="Pagamento via PIX">
-          <h3>Pagamento rápido via PIX</h3>
-          <img src="qrcode-pix.png" alt="QR Code PIX" style="width:220px;height:220px;object-fit:contain;border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,.12);margin:8px auto;">
-          <div class="pix-code" id="${buttonId}-code">COLE_AQUI_O_SEU_COPIA_E_COLA_PIX</div>
-          <button class="btn" id="${buttonId}-copy">Copiar código PIX</button>
-          <div class="small-muted" style="margin-top:.5rem">Após o pagamento, você receberá o PDF no e-mail informado.</div>
-          <div style="margin-top:.8rem"><button class="btn-ghost" id="${buttonId}-close">Fechar</button></div>
-        </div>`;
-      document.body.appendChild(modal);
-      btn.addEventListener('click', ()=> modal.classList.add('open'));
-      modal.addEventListener('click', (e)=>{
-        if(e.target.classList.contains('pix-modal') || e.target.id===`${buttonId}-close`) modal.classList.remove('open');
-      });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') modal.classList.remove('open'); });
-      document.getElementById(`${buttonId}-copy`).addEventListener('click', ()=>{
-        const txt = document.getElementById(`${buttonId}-code`).innerText.trim();
-        navigator.clipboard.writeText(txt).then(()=>{
-          document.getElementById(`${buttonId}-copy`).textContent='Copiado!';
-          setTimeout(()=>document.getElementById(`${buttonId}-copy`).textContent='Copiar código PIX',1500);
-        });
-      });
-    }
-    attachPix('pt-pix'); attachPix('en-pix');
-  </script>
+      <!-- thumbs em grade, sem rolagem -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/belem/belem_01.jpg" alt="Mercado Ver-o-Peso">
+        <img data-src="imagens/belem/belem_02.jpg" alt="Bancas de ervas e temperos amazônicos">
+        <img data-src="imagens/belem/belem_03.jpg" alt="Tucupi e folhas de jambu">
+        <img data-src="imagens/belem/belem_04.jpg" alt="Barcos na Baía do Guajará">
+        <img data-src="imagens/belem/belem_05.jpg" alt="Quitutes amazônicos prontos para servir">
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Belém, Pará — Mercado Ver-o-Peso</h3>
+      <p>Berço do <strong>pato no tucupi</strong> e do <em>jambu</em>. O mercado reúne ingredientes amazônicos únicos — tucupi, ervas, pimentas e peixes frescos.</p>
+      <ul class="small-muted" style="margin:0 0 12px 1rem">
+        <li>Melhor horário: cedo (amanhecer).</li>
+        <li>Leve dinheiro para provar os sabores nas bancas.</li>
+      </ul>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Mercado+Ver-o-Peso+Bel%C3%A9m" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MODAL FULLSCREEN – Goiânia -->
+<div id="p2" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Goiânia - Cerrado vivo">
+
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Goiânia, Cerrado">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
+      <div class="gallery-main">
+        <img
+          src="imagens/goiania_centro.png"
+          width="1400" height="933"
+          alt="Paisagem do Cerrado goiano ao entardecer">
+      </div>
+      <button class="gnext" aria-label="Próxima foto">›</button>
+
+      <!-- thumbs em grade, sem rolagem -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/goias/goias_01.jpg" alt="Cerrado goiano">
+        <img data-src="imagens/goias/goias_02.jpg" alt="Fruto de pequi no pé">
+        <img data-src="imagens/goias/goias_03.jpg" alt="Feira com ingredientes do Cerrado">
+        <img data-src="imagens/goias/goias_04.jpg" alt="Trilha em parque estadual">
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Goiânia, Goiás — Cerrado vivo</h3>
+      <p>O <strong>pequi</strong> dá personalidade a pratos como o arroz com pequi — símbolo do Centro-Oeste.
+         Explore feiras locais e parques do Cerrado.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Goi%C3%A2nia" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- (Crie p4, p5, p6 copiando o padrão acima) -->
+ <!-- MODAL FULLSCREEN – Salvador -->
+<div id="p4" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Salvador - Pelourinho">
+
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Salvador, Pelourinho">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
+
+      <div class="gallery-main">
+        <!-- capa inicial da galeria -->
+        <img
+          src="imagens/salvador/salvador_01.webp"
+          width="1400" height="933"
+          alt="Pelourinho ao entardecer com casarões coloniais">
+      </div>
+
+      <button class="gnext" aria-label="Próxima foto">›</button>
+
+      <!-- thumbs em grade (sem rolagem) -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/salvador/salvador_01_thumb.jpg" alt="Pelourinho">
+        <img data-src="imagens/salvador/salvador_02_thumb.jpg" alt="Baianas do acarajé">
+        <img data-src="imagens/salvador/salvador_03_thumb.jpg" alt="Mercado Modelo e Elevador Lacerda">
+        <img data-src="imagens/salvador/salvador_04_thumb.jpg" alt="Farol da Barra">
+        
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Salvador, BA — Pelourinho</h3>
+      <p>Centro histórico vibrante, lar do <strong>acarajé</strong>, do dendê e de tradições afro-baianas.
+         Visite o <em>Mercado Modelo</em>, o <em>Elevador Lacerda</em> e o <em>Farol da Barra</em>.</p>
+      <ul class="small-muted" style="margin:0 0 12px 1rem">
+        <li>Melhor horário: fim de tarde (luz dourada nos casarões).</li>
+        <li>Experimente: acarajé, abará e cocada no tabuleiro das baianas.</li>
+      </ul>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Pelourinho,+Salvador" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- MODAL FULLSCREEN – Manaus -->
+<div id="p5" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Manaus - Teatro Amazonas">
+
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Manaus, Teatro Amazonas">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
+
+      <div class="gallery-main">
+        <img
+          src="imagens/manaus/manaus_01.webp"
+          width="1400" height="933"
+          alt="Teatro Amazonas iluminado ao entardecer">
+      </div>
+
+      <button class="gnext" aria-label="Próxima foto">›</button>
+
+      <!-- thumbs em grade (sem rolagem) -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/manaus/manaus_01_thumb.jpg" alt="Teatro Amazonas">
+        <img data-src="imagens/manaus/manaus_02_thumb.jpg" alt="Encontro das Águas">
+        <img data-src="imagens/manaus/manaus_03_thumb.jpg" alt="Mercado Adolpho Lisboa">
+        <img data-src="imagens/manaus/manaus_04_thumb.jpg" alt="Passeio de barco no Rio Negro">
+        <img data-src="imagens/manaus/manaus_05_thumb.jpg" alt="Vitórias-régias e igarapé">
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Manaus, AM — Teatro Amazonas & Amazônia</h3>
+      <p>No coração da floresta, Manaus mistura cultura e natureza exuberante.
+         Experimente <strong>peixes amazônicos</strong> (tambaqui, pirarucu) e frutas nativas em feiras locais.</p>
+      <ul class="small-muted" style="margin:0 0 12px 1rem">
+        <li>Destaques: <em>Teatro Amazonas</em>, <em>Encontro das Águas</em>, passeios de barco no Rio Negro.</li>
+        <li>Melhor horário: fim de tarde para luz dourada e clima mais fresco.</li>
+      </ul>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Teatro+Amazonas+Manaus" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- grande do sul-->
+
+<!-- MODAL FULLSCREEN – Serra Gaúcha -->
+<div id="p6" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Serra Gaúcha - Vale dos Vinhedos">
+
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Serra Gaúcha">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
+
+      <div class="gallery-main">
+        <img
+          src="imagens/serra-gaucha/serragaucha_01.webp"
+          width="1400" height="933"
+          alt="Parreirais no Vale dos Vinhedos ao entardecer">
+      </div>
+
+      <button class="gnext" aria-label="Próxima foto">›</button>
+
+      <!-- thumbs em grade (sem rolagem) -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/serra-gaucha/serragaucha_01_thumb.jpg" alt="Vinhedos">
+        <img data-src="imagens/serra-gaucha/serragaucha_02_thumb.jpg" alt="Cantina italiana e tábuas coloniais">
+        <img data-src="imagens/serra-gaucha/serragaucha_03_thumb.jpg" alt="Cascata do Caracol em Canela">
+        <img data-src="imagens/serra-gaucha/serragaucha_04_thumb.jpg" alt="Arquitetura europeia em Gramado">
+        <img data-src="imagens/serra-gaucha/serragaucha_05_thumb.jpg" alt="Paisagem serrana com neblina">
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Serra Gaúcha, RS — Vale dos Vinhedos & Região</h3>
+      <p>Terra de <strong>coloniais</strong>, <strong>churrasco</strong> e vinhos. Entre Gramado e Bento Gonçalves,
+         a culinária mistura influências italiana e alemã com ingredientes locais.</p>
+      <ul class="small-muted" style="margin:0 0 12px 1rem">
+        <li>Roteiro: <em>Vale dos Vinhedos</em>, <em>Cascata do Caracol</em> (Canela), <em>Lago Negro</em> (Gramado).</li>
+        <li>Experimente: galeto, polenta, queijos coloniais e uvas frescas na safra.</li>
+      </ul>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Vale+dos+Vinhedos" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- MODAL FULLSCREEN – Belo Horizonte -->
+<div id="p3" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Belo Horizonte - Mercado Central">
+
+    <!-- GALERIA (esquerda) -->
+    <div class="gallery" role="region" aria-label="Galeria Belo Horizonte, Mercado Central">
+      <button class="gprev" aria-label="Foto anterior">‹</button>
+
+      <div class="gallery-main">
+        <img
+          src="imagens/bh/bh_01.webp"
+          width="1400" height="933"
+          alt="Mercado Central de Belo Horizonte com bancas de queijos e doces">
+      </div>
+
+      <button class="gnext" aria-label="Próxima foto">›</button>
+
+      <!-- thumbs em grade (sem rolagem) -->
+      <div class="gallery-thumbs" role="listbox" aria-label="Miniaturas">
+        <img class="active" data-src="imagens/bh/bh_01_thumb.jpeg" alt="Mercado Central de BH" loading="lazy" decoding="async">
+        <img data-src="imagens/bh/bh_02_thumb.jpg" alt="Pão de queijo e doce de leite mineiro" loading="lazy" decoding="async">
+        <img data-src="imagens/bh/bh_03_thumb.jpg" alt="Praça da Liberdade ao entardecer" loading="lazy" decoding="async">
+        <img data-src="imagens/bh/bh_04_thumb.jpeg" alt="Igreja da Pampulha (São Francisco de Assis)" loading="lazy" decoding="async">
+        <img data-src="imagens/bh/bh_05_thumb.jpg" alt="Boteco tradicional com petiscos mineiros" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- TEXTO / AÇÕES (direita) -->
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Belo Horizonte, MG — Mercado Central & Pampulha</h3>
+      <p>Tradição mineira em cada banca: <strong>frango com quiabo</strong>, <strong>queijos</strong>, doces e cafés.
+         Passeie pela <em>Pampulha</em> (conjunto moderno de Niemeyer) e a <em>Praça da Liberdade</em>.</p>
+      <ul class="small-muted" style="margin:0 0 12px 1rem">
+        <li>Experimente: pão de queijo, queijos artesanais e doce de leite.</li>
+        <li>Melhor horário: manhã no Mercado; fim de tarde na Pampulha.</li>
+      </ul>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Mercado+Central+Belo+Horizonte" target="_blank" rel="noopener">Abrir no mapa</a>
+        <button class="close">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="p1-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Belém - Ver-o-Peso Market">
+    <div class="gallery" role="region" aria-label="Belém gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/belem/belem_01.jpg" width="1400" height="933" alt="Ver-o-Peso Market at sunrise">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/belem/belem_01_thumb.jpg" alt="Ver-o-Peso Market">
+        <img data-src="imagens/belem/belem_02_thumb.jpg" alt="Amazonian herbs and spices">
+        <img data-src="imagens/belem/belem_03_thumb.jpg" alt="Tucupi and jambu leaves">
+        <img data-src="imagens/belem/belem_04_thumb.jpg" alt="Boats on Guajará Bay">
+        <img data-src="imagens/belem/belem_05_thumb.jpg" alt="Amazon street food">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Belém, Pará — Ver-o-Peso Market</h3>
+      <p>Home of <strong>duck in tucupi</strong> and <em>jambu</em>. A unique mix of Amazonian ingredients, colors and aromas.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Ver-o-Peso+Market+Bel%C3%A9m" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="p2-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Goiânia - Cerrado">
+    <div class="gallery" role="region" aria-label="Goiânia gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/goias/goias_01.jpg" width="1400" height="933" alt="Cerrado landscape at sunset">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/goias/goias_01.jpg" alt="Cerrado landscape">
+        <img data-src="imagens/goias/goias_02.jpg" alt="Pequi fruit on the tree">
+        <img data-src="imagens/goias/goias_03.jpg" alt="Local market with Cerrado produce">
+        <img data-src="imagens/goias/goias_04.jpg" alt="Trail in a state park">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Goiânia, Goiás — Living Cerrado</h3>
+      <p><strong>Pequi</strong> gives a signature flavor to classics like pequi rice — a symbol of Brazil’s Center-West.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Goi%C3%A2nia" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="p3-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Belo Horizonte - Mercado Central">
+    <div class="gallery" role="region" aria-label="Belo Horizonte gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/bh/bh_01_thumb.jpeg" width="1400" height="933" alt="Mercado Central in Belo Horizonte">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/bh/bh_01_thumb.jpg" alt="Mercado Central">
+        <img data-src="imagens/bh/bh_02_thumb.jpg" alt="Cheese bread and dulce de leche">
+        <img data-src="imagens/bh/bh_03_thumb.jpg" alt="Praça da Liberdade at dusk">
+        <img data-src="imagens/bh/bh_04_thumb.jpg" alt="Pampulha Modern Ensemble">
+        <img data-src="imagens/bh/bh_05_thumb.jpg" alt="Traditional boteco with snacks">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Belo Horizonte, MG — Mercado Central & Pampulha</h3>
+      <p>Minas cuisine at every stall: <strong>chicken with okra</strong>, artisanal cheeses, sweets and coffee.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Mercado+Central+Belo+Horizonte" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="p4-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Salvador - Pelourinho">
+    <div class="gallery" role="region" aria-label="Salvador gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/salvador/salvador_01_thumb.jpg" width="1400" height="933" alt="Pelourinho at sunset">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/salvador/salvador_01_thumb.jpg" alt="Pelourinho">
+        <img data-src="imagens/salvador/salvador_02_thumb.jpg" alt="Acarajé stalls">
+        <img data-src="imagens/salvador/salvador_03_thumb.jpg" alt="Mercado Modelo & Elevador Lacerda">
+        <img data-src="imagens/salvador/salvador_04_thumb.jpg" alt="Farol da Barra">
+        <img data-src="imagens/salvador/salvador_05_thumb.jpg" alt="Stone streets and tiles">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Salvador, BA — Pelourinho</h3>
+      <p>Vibrant historic center, home of <strong>acarajé</strong>, dendê and Afro-Bahian traditions.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Pelourinho,+Salvador" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="p5-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Manaus - Teatro Amazonas">
+    <div class="gallery" role="region" aria-label="Manaus gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/manaus/manaus_01_thumb.jpg" width="1400" height="933" alt="Teatro Amazonas at dusk">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/manaus/manaus_01_thumb.jpg" alt="Teatro Amazonas">
+        <img data-src="imagens/manaus/manaus_02_thumb.jpg" alt="Meeting of the Waters">
+        <img data-src="imagens/manaus/manaus_03_thumb.jpg" alt="Adolpho Lisboa Market">
+        <img data-src="imagens/manaus/manaus_04_thumb.jpg" alt="Boat tour on Rio Negro">
+        <img data-src="imagens/manaus/manaus_05_thumb.jpg" alt="Victoria amazonica and igarapé">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Manaus, AM — Teatro Amazonas & Amazon</h3>
+      <p>Where culture meets the rainforest. Try <strong>Amazon fish</strong> (tambaqui, pirarucu) and native fruits.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Teatro+Amazonas+Manaus" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="p6-en" class="modal full" aria-hidden="true">
+  <div class="box" role="dialog" aria-label="Serra Gaúcha - Vineyards">
+    <div class="gallery" role="region" aria-label="Serra Gaúcha gallery">
+      <button class="gprev" aria-label="Previous photo">‹</button>
+      <div class="gallery-main">
+        <img src="imagens/serra-gaucha/serragaucha_01_thumb.jpg" width="1400" height="933" alt="Vineyards at sunset">
+      </div>
+      <button class="gnext" aria-label="Next photo">›</button>
+      <div class="gallery-thumbs" role="listbox" aria-label="Thumbnails">
+        <img class="active" data-src="imagens/serra-gaucha/serragaucha_01_thumb.webp" alt="Vineyards">
+        <img data-src="imagens/serra-gaucha/serragaucha_02_thumb.jpg" alt="Italian cantina & coloniale boards">
+        <img data-src="imagens/serra-gaucha/serragaucha_03_thumb.jpg" alt="Caracol Waterfall in Canela">
+        <img data-src="imagens/serra-gaucha/serragaucha_04_thumb.jpg" alt="European-style architecture in Gramado">
+        <img data-src="imagens/serra-gaucha/serragaucha_05_thumb.jpg" alt="Foggy mountain landscape">
+      </div>
+    </div>
+    <div class="gallery-copy">
+      <h3 style="margin-top:0">Serra Gaúcha, RS — Vineyards & Region</h3>
+      <p>Land of <strong>coloniale</strong> boards, <strong>barbecue</strong> and wine. Between Gramado and Bento Gonçalves, Italian and German influences meet local produce.</p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href="https://maps.google.com/?q=Vale+dos+Vinhedos" target="_blank" rel="noopener">Open map</a>
+        <button class="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
