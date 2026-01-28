@@ -1,0 +1,12 @@
+<!-- /success.html -->
+<h1>Obrigado!</h1>
+<p id="msg">Gerando seu download…</p>
+<script>
+(async () => {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('session_id');
+  const r = await fetch(`/api/download-link?session_id=${encodeURIComponent(id)}`);
+  const { url, message } = await r.json();
+  if (url) { location.href = url; } else { document.getElementById('msg').textContent = message || 'Erro ao gerar link.'; }
+})();
+</script>
