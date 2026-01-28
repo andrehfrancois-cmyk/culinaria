@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Caderno de Receitas – Layout</title>
+  <style>
+    @page { size: A4; margin: 20mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Helvetica", Arial, sans-serif; background: #f7f7f7; }
+    .page { width: 210mm; min-height: 297mm; background: #fff; padding: 20mm; margin: 0 auto; position: relative; page-break-after: always; }
+    .header { background: #333; color: #fff; padding: 16px; text-align: center; font-weight: 700; font-size: 22px; letter-spacing: 1px; }
+    .header::after { content: ""; display: block; height: 4px; background: #E25822; margin-top: 6px; }
+    h2.section-title { color: #E25822; margin: 24px 0 12px; font-size: 18px; }
+    /* Temperos table */
+    table.temperos { width: 100%; border-collapse: collapse; }
+    table.temperos th { background: #333; color: #fff; padding: 8px; text-align: left; }
+    table.temperos td { border: 1px solid #ccc; padding: 8px; }
+    /* Cortes */
+    .cortes-container { display: flex; gap: 24px; flex-wrap: wrap; }
+    .cortes-container img { flex: 1 1 45%; max-width: 45%; border: 1px solid #ccc; }
+    .cortes-list { flex: 1 1 45%; font-size: 14px; }
+    .cortes-item { margin-bottom: 8px; }
+    /* Dicas blocos */
+    .tips-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); }
+    .tip-card { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fff; }
+    .tip-card h3 { margin-top: 0; color: #E25822; }
+    /* Receita ficha */
+    .recipe-layout { display: flex; gap: 24px; }
+    .recipe-form { flex: 3; font-size: 14px; }
+    .recipe-form label { font-weight: 600; display: block; margin: 8px 0 4px; }
+    .recipe-form textarea { width: 100%; min-height: 60px; border: 1px solid #ccc; padding: 6px; resize: vertical; }
+    .recipe-form .checkbox-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; }
+    .recipe-form .checkbox-list span::before { content: "[ ] "; }
+    .recipe-meta { margin: 8px 0; }
+    .recipe-meta span { margin-right: 12px; }
+    .recipe-photo { flex: 1; border: 1px dashed #999; min-height: 220px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #666; }
+  </style>
+</head>
+<body>
+
+<!-- Página 2 – Temperos -->
+<section class="page">
+  <div class="header">TABELA DE TEMPEROS & COMBINAÇÕES</div>
+  <h2 class="section-title">Harmonização de Sabores</h2>
+  <table class="temperos">
+    <thead>
+      <tr><th>Ingrediente</th><th>Temperos Sugeridos</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Frango</td><td>Alecrim • Limão • Páprica • Alho</td></tr>
+      <tr><td>Peixe</td><td>Coentro • Limão • Endro • Manteiga</td></tr>
+      <tr><td>Porco</td><td>Mostarda • Mel • Tomilho • Pimenta-do-reino</td></tr>
+      <tr><td>Carne Bovina</td><td>Cominho • Pimenta-do-reino • Alho • Cebola</td></tr>
+      <tr><td>Cordeiro</td><td>Hortelã • Alecrim • Alho • Limão Siciliano</td></tr>
+      <tr><td>Legumes</td><td>Orégano • Azeite • Páprica Doce • Sal Grosso</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Página 3 – Mapa de Cortes -->
+<section class="page">
+  <div class="header">MAPA DE CORTES DE CARNE</div>
+  <div class="cortes-container">
+    <img src="mapa.jpeg" alt="Mapa de cortes bovinos">
+    <div class="cortes-list">
+      <h2 class="section-title">Principais Cortes & Usos</h2>
+      <div class="cortes-item"><strong>Picanha:</strong> Churrasco, grelha rápida</div>
+      <div class="cortes-item"><strong>Alcatra:</strong> Bifes, espetos</div>
+      <div class="cortes-item"><strong>Fraldinha:</strong> Grelha, churrasco</div>
+      <div class="cortes-item"><strong>Patinho:</strong> Moído, ensopados</div>
+      <div class="cortes-item"><strong>Maminha:</strong> Assados lentos</div>
+      <div class="cortes-item"><strong>Coxão Duro:</strong> Cozidos</div>
+      <div class="cortes-item"><strong>Cupim:</strong> Defumação lenta</div>
+    </div>
+  </div>
+</section>
+
+<!-- Página 4 – Dicas de Churrasco -->
+<section class="page">
+  <div class="header">DICAS DE CHURRASCO RAIZ</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <h3>Acendimento sem Álcool</h3>
+      <p>Use jornal, gravetos e paciência para evitar gosto químico.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Madeiras de Defumação</h3>
+      <p>Eucalipto, laranjeira ou macieira para aromas distintos.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Altura da Grelha</h3>
+      <p>15–20 cm da brasa é o ponto ideal para calor indireto.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Ponto da Carne</h3>
+      <p>Aperte levemente: macio = mal; firme = bem-passado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Página 5 – Ficha de Receita -->
+<section class="page">
+  <div class="header">MINHA RECEITA</div>
+  <div class="recipe-layout">
+    <div class="recipe-form">
+      <label>Título da Receita</label>
+      <textarea placeholder="Ex.: Costela na Brasa"></textarea>
+
+      <label>Origem</label>
+      <textarea placeholder="Receita da Vó, do amigo, etc."></textarea>
+
+      <label>Ingredientes</label>
+      <div class="checkbox-list">
+        <span>Carne</span><span>Sal Grosso</span>
+        <span>Alho</span><span>Pimenta</span>
+      </div>
+
+      <label>Modo de Preparo</label>
+      <textarea placeholder="Passo a passo..."></textarea>
+
+      <div class="recipe-meta">
+        <span>Tempo: ____ min</span>
+        <span>Serve: ____ pessoas</span>
+        <span>Dificuldade: ☆ ☆ ☆ ☆ ☆</span>
+      </div>
+
+      <label>Notas Pessoais / Ajustes</label>
+      <textarea placeholder="Observações..."></textarea>
+    </div>
+    <div class="recipe-photo">Cole aqui a foto do prato</div>
+  </div>
+</section>
+
+</body>
+</html>
