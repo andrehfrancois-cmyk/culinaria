@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
-    payment_method_types: ['card', 'pix'], // Pix ativo no BR
+    payment_method_types: ['card'], // Pix ativo no BR
     line_items: [{
       price_data: {
         currency: (lang === 'pt' ? 'brl' : 'usd'),
